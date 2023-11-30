@@ -11,15 +11,15 @@ import (
 
 const (
 	API_VERSION     = "v1alpha1"
-	CURRENT_CONTEXT = "currentContext"
+	CURRENT_CONTEXT = "current-context"
 )
 
 func Initialise() {
 	viper.SetConfigName("settings")
 	viper.SetConfigType("yaml")
 
-	viper.AddConfigPath(configdir.LocalConfig("grizzly"))
 	viper.AddConfigPath(".")
+	viper.AddConfigPath(configdir.LocalConfig("grizzly"))
 
 	viper.BindEnv("overrides.grafana.url", "GRAFANA_URL")
 	viper.BindEnv("overrides.grafana.user", "GRAFANA_USER")
@@ -78,7 +78,7 @@ func configPath() (string, error) {
 
 func NewConfig() {
 	viper.Set("apiVersion", "v1alpha1")
-	viper.Set("currentContext", "default")
+	viper.Set(CURRENT_CONTEXT, "default")
 	viper.Set("contexts.default.name", "default")
 }
 
